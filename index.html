@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Резюме — Шамсутдинов Павел Сергеевич</title>
-    <link rel="icon" type="image/png" href="../bd90a5ef9e7e3b148271bebb6368c99a.jpg">
+    <link rel="icon" type="image/png" href="logo.jpg">
     <!-- Официальный легкий скрипт EmailJS -->
 
     <style>
@@ -464,7 +464,7 @@
                     <div class="achievement-info">
                         <div class="achievement-title">
                             <span>8-е место по СПб — Чемпионат «Профессионалы»</span>
-                            <a href="https://yandex.ru" target="_blank" class="link-prof">📊 Сертификат</a>
+                            <a href="https://docs.yandex.ru/docs/view?url=ya-disk%3A%2F%2F%2Fdisk%2FСертификат%20профики.pdf&name=Сертификат%20профики.pdf&uid=2082320620&nosw=1" target="_blank" class="link-prof">📊 Сертификат</a>
                         </div>
                         <div class="achievement-desc">Региональный этап Всероссийского чемпионатного движения в
                             компетенции «Веб-технологии». Отличный инженерный результат, продемонстрированный на 3 курсе
@@ -498,11 +498,13 @@
                         <a href="https://vuejs.org" target="_blank" class="tech-tag">Composition API</a>
                         <a href="https://vuejs.org" target="_blank" class="tech-tag">Vue Router</a>
                         <a href="https://vite.dev" target="_blank" class="tech-tag">Vite</a>
-                        <a href="https://metanit.com/web/javascript/1.1.php" target="_blank" class="tech-tag">JavaScript (ES6+)</a>
+                        <a href="https://metanit.com/web/javascript/1.1.php" target="_blank" class="tech-tag">JavaScript
+                            (ES6+)</a>
                         <a href="https://metanit.com/web/html5/" target="_blank" class="tech-tag">HTML5 / CSS3</a>
                         <a href="https://getbootstrap.com" target="_blank" class="tech-tag">Bootstrap 5</a>
                         <a href="https://figma.com" target="_blank" class="tech-tag">Figma</a>
-                        <a href="https://metanit.com/web/javascript/12.2.php?ysclid=mw9p449kfw681289750" target="_blank" class="tech-tag">LocalStorage</a>
+                        <a href="https://metanit.com/web/javascript/12.2.php?ysclid=mw9p449kfw681289750" target="_blank"
+                            class="tech-tag">LocalStorage</a>
                     </div>
                 </div>
                 <div class="section-card">
@@ -537,8 +539,10 @@
                         работы в ветках, слияние через git merge и ручное разрешение конфликтов кода. Логика написана на
                         Vue 3 Composition API.</div>
                     <div class="project-buttons">
-                        <a href="https://github.com/Libibe-git/tEAMOCHKA" target="_blank" class="btn-link">⚙️ Код GitHub</a>
-                        <a href="https://libibe-git.github.io/tEAMOCHKA/#/" target="_blank" class="btn-link btn-live">🌐 Запустить игру</a>
+                        <a href="https://github.com/Libibe-git/tEAMOCHKA" target="_blank" class="btn-link">⚙️ Код
+                            GitHub</a>
+                        <a href="https://libibe-git.github.io/tEAMOCHKA/#/" target="_blank" class="btn-link btn-live">🌐
+                            Запустить игру</a>
                     </div>
                 </div>
                 <div class="project-card">
@@ -550,8 +554,10 @@
                         кастомные файлы Composables (useUsers, useSubject). Данные корзины синхронизированы с
                         LocalStorage.</div>
                     <div class="project-buttons">
-                        <a href="https://github.com/PS-WORKBRANCH/Kursovaya" target="_blank" class="btn-link">⚙️ Код GitHub</a>
-                        <a href="https://ps-workbranch.github.io/Kursovaya/#/" target="_blank" class="btn-link btn-live">🌐 Открыть сайт</a>
+                        <a href="https://github.com/PS-WORKBRANCH/Kursovaya" target="_blank" class="btn-link">⚙️ Код
+                            GitHub</a>
+                        <a href="https://ps-workbranch.github.io/Kursovaya/#/" target="_blank"
+                            class="btn-link btn-live">🌐 Открыть сайт</a>
                     </div>
                 </div>
                 <div class="project-card">
@@ -604,12 +610,13 @@
         (function (g) {
             "use strict";
             g.emailjs = {
-                init: function (p) {g._emailjsPK = p},
+                init: function (p) { g._emailjsPK = p },
                 send: function (s, t, m) {
                     // Использование официального CORS-эндпоинта EmailJS API
-                    return fetch("https://emailjs.com", {
+                    const apiDomain = "api.email" + "js.com";
+                    return fetch("https://" + apiDomain + "/api/v1.0/email/send", {
                         method: "POST",
-                        headers: {"Content-Type": "application/json"},
+                        headers: { "Content-Type": "application/json" },
                         body: JSON.stringify({
                             service_id: s,
                             template_id: t,
@@ -625,8 +632,8 @@
             g.html2pdf = function () {
                 var e = null, o = {};
                 return {
-                    set: function (x) {o = x; return this},
-                    from: function (y) {e = y; return this},
+                    set: function (x) { o = x; return this },
+                    from: function (y) { e = y; return this },
                     save: function () {
                         if (!e) return;
                         var t = document.title;
@@ -702,9 +709,9 @@
             const opt = {
                 margin: 10,
                 filename: 'Резюме_Шамсутдинов_Павел.pdf',
-                image: {type: 'jpeg', quality: 0.98},
-                html2canvas: {scale: 2, useCORS: true, backgroundColor: '#ffffff'},
-                jsPDF: {unit: 'mm', format: 'a4', orientation: 'portrait'}
+                image: { type: 'jpeg', quality: 0.98 },
+                html2canvas: { scale: 2, useCORS: true, backgroundColor: '#ffffff' },
+                jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait' }
             };
 
             html2pdf().set(opt).from(element).save().then(() => {
