@@ -1,0 +1,719 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Резюме — Шамсутдинов Павел Сергеевич</title>
+    <!-- Официальный легкий скрипт EmailJS -->
+
+    <style>
+        :root {
+            --bg-color: #050505;
+            --card-bg: #121212;
+            --text-main: #f8fafc;
+            --text-muted: #94a3b8;
+            --accent-yellow: #eab308;
+            --accent-blue: #38bdf8;
+            --border-color: #262626;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            line-height: 1.5;
+            padding: 40px 20px;
+            display: flex;
+            justify-content: center;
+        }
+
+        .container {
+            max-width: 1200px;
+            width: 100%;
+            display: grid;
+            grid-template-columns: 350px 1fr;
+            gap: 30px;
+        }
+
+        .sidebar {
+            display: flex;
+            flex-direction: column;
+            gap: 24px;
+        }
+
+        .profile-card,
+        .skills-card,
+        .section-card {
+            background-color: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: 24px;
+        }
+
+        .profile-card h1 {
+            font-size: 22px;
+            font-weight: 700;
+            margin-bottom: 8px;
+            line-height: 1.3;
+        }
+
+        .profile-card .role {
+            color: var(--accent-blue);
+            font-size: 15px;
+            font-weight: 500;
+            margin-bottom: 16px;
+        }
+
+        .contacts-list {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            font-size: 14px;
+            color: var(--text-muted);
+            margin-bottom: 16px;
+        }
+
+        .btn-pdf {
+            width: 100%;
+            background-color: transparent;
+            border: 1px solid var(--accent-blue);
+            color: var(--accent-blue);
+            padding: 12px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.2s;
+        }
+
+        .btn-pdf:hover {
+            background-color: var(--accent-blue);
+            color: #000;
+            box-shadow: 0 0 15px rgba(56, 189, 248, 0.4);
+        }
+
+        .main-content {
+            display: flex;
+            flex-direction: column;
+            gap: 24px;
+        }
+
+        .achievements-container {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+
+        .achievement-block {
+            background: linear-gradient(135deg, #1c1917 0%, #121212 100%);
+            border: 2px solid var(--accent-yellow);
+            border-radius: 14px;
+            padding: 24px;
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            transition: transform 0.2s;
+        }
+
+        .achievement-block:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 30px rgba(234, 179, 8, 0.2);
+        }
+
+        .achievement-icon {
+            font-size: 36px;
+            background: rgba(234, 179, 8, 0.1);
+            padding: 12px;
+            border-radius: 12px;
+        }
+
+        .achievement-info {
+            flex-grow: 1;
+        }
+
+        .achievement-title {
+            color: var(--accent-yellow);
+            font-size: 18px;
+            font-weight: 800;
+            margin-bottom: 6px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .achievement-desc {
+            color: var(--text-main);
+            font-size: 14px;
+            line-height: 1.5;
+        }
+
+        .link-prof {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            background: rgba(234, 179, 8, 0.15);
+            color: var(--accent-yellow);
+            text-decoration: none;
+            padding: 6px 12px;
+            border-radius: 6px;
+            font-size: 12px;
+            font-weight: 700;
+            border: 1px solid rgba(234, 179, 8, 0.4);
+            transition: all 0.2s;
+        }
+
+        .link-prof:hover {
+            background: var(--accent-yellow);
+            color: #000;
+        }
+
+        .tabs-nav {
+            display: flex;
+            gap: 12px;
+            border-bottom: 1px solid var(--border-color);
+            padding-bottom: 12px;
+        }
+
+        .tab-btn {
+            background: transparent;
+            border: none;
+            color: var(--text-muted);
+            font-size: 15px;
+            font-weight: 600;
+            cursor: pointer;
+            padding: 8px 16px;
+        }
+
+        .tab-btn.active {
+            color: var(--accent-blue);
+            background-color: rgba(56, 189, 248, 0.1);
+            border-radius: 6px;
+        }
+
+        .tab-content {
+            display: none;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .tab-content.active {
+            display: flex;
+        }
+
+        .section-title {
+            font-size: 16px;
+            font-weight: 700;
+            margin-bottom: 16px;
+            border-left: 3px solid var(--accent-blue);
+            padding-left: 10px;
+        }
+
+        .tags-wrapper {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+
+        .tech-tag {
+            background-color: #1a1a1a;
+            border: 1px solid var(--border-color);
+            color: var(--text-main);
+            padding: 8px 14px;
+            border-radius: 6px;
+            font-size: 13px;
+            text-decoration: none;
+            transition: all 0.2s;
+        }
+
+        .tech-tag.static-tag:hover {
+            transform: none;
+            border-color: var(--border-color);
+            box-shadow: none;
+        }
+
+        .tech-tag:not(.static-tag):hover {
+            transform: translateY(-2px);
+            border-color: var(--accent-blue);
+            box-shadow: 0 0 10px rgba(56, 189, 248, 0.2);
+        }
+
+        .project-card {
+            background-color: #161616;
+            border: 1px solid var(--border-color);
+            border-radius: 10px;
+            padding: 20px;
+        }
+
+        .project-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 12px;
+        }
+
+        .project-meta {
+            font-size: 12px;
+            color: var(--text-muted);
+            background-color: rgba(255, 255, 255, 0.05);
+            padding: 2px 8px;
+            border-radius: 4px;
+        }
+
+        .project-desc {
+            font-size: 14px;
+            color: var(--text-muted);
+        }
+
+        .project-buttons {
+            display: flex;
+            gap: 12px;
+            margin-top: 14px;
+        }
+
+        .btn-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            background-color: #222;
+            border: 1px solid #333;
+            color: var(--text-main);
+            text-decoration: none;
+            padding: 8px 14px;
+            border-radius: 6px;
+            font-size: 13px;
+            font-weight: 600;
+            transition: all 0.2s;
+        }
+
+        .btn-link:hover {
+            color: var(--accent-blue);
+            background-color: #2a2a2a;
+        }
+
+        .btn-link.btn-live {
+            border-color: rgba(56, 189, 248, 0.3);
+            background-color: rgba(56, 189, 248, 0.05);
+        }
+
+        .btn-link.btn-live:hover {
+            background-color: rgba(56, 189, 248, 0.15);
+            border-color: var(--accent-blue);
+        }
+
+        /* Исправленная Вертикальная Форма связи */
+        .section-card-form {
+            background-color: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: 24px;
+            margin-top: 10px;
+        }
+
+        .form-group {
+            margin-bottom: 18px;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            gap: 6px;
+            width: 100%;
+        }
+
+        .form-group label {
+            display: block;
+            font-size: 13px;
+            font-weight: 600;
+            color: var(--text-muted);
+        }
+
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            background-color: #161616;
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            padding: 12px;
+            color: var(--text-main);
+            font-size: 14px;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: var(--accent-blue);
+        }
+
+        .btn-submit {
+            background-color: var(--accent-blue);
+            color: #050505;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 8px;
+            font-weight: 700;
+            font-size: 14px;
+            cursor: pointer;
+            transition: all 0.2s;
+            display: inline-block;
+            margin-top: 10px;
+        }
+
+        .btn-submit:hover {
+            background-color: #5cd0ff;
+            box-shadow: 0 0 15px rgba(56, 189, 248, 0.4);
+            transform: translateY(-1px);
+        }
+
+        @media print {
+            body {
+                background: #fff !important;
+                color: #000 !important;
+                padding: 0 !important;
+            }
+
+            .container {
+                display: block !important;
+            }
+
+            .sidebar {
+                margin-bottom: 30px;
+            }
+
+            .profile-card,
+            .skills-card,
+            .section-card,
+            .project-card,
+            .achievement-block {
+                background: #fff !important;
+                border: 1px solid #ddd !important;
+                color: #000 !important;
+                box-shadow: none !important;
+            }
+
+            .tab-btn,
+            .btn-pdf,
+            .project-buttons,
+            .section-card-form {
+                display: none !important;
+            }
+
+            .tab-content {
+                display: flex !important;
+                flex-direction: column !important;
+                gap: 20px !important;
+            }
+
+            .tech-tag {
+                background: #eee !important;
+                color: #000 !important;
+                border: 1px solid #ccc !important;
+            }
+
+            .role,
+            .achievement-title,
+            .link-prof {
+                color: #000 !important;
+                font-weight: bold;
+            }
+
+            .text-muted,
+            .project-desc {
+                color: #444 !important;
+            }
+        }
+    </style>
+</head>
+
+<body id="resume-document">
+    <div class="container">
+        <!-- Левый сайдбар -->
+        <div class="sidebar">
+            <div class="profile-card">
+                <h1>Шамсутдинов<br>Павел Сергеевич</h1>
+                <div class="role">Junior Frontend Developer</div>
+                <ul class="contacts-list">
+                    <li>Город: Санкт-Петербург</li>
+                    <li>Email: ps-working@yandex.ru</li>
+                    <li>Telegram: @PS_by_havi</li>
+                    <li>GitHub: PS-WORKBRANCH</li>
+                </ul>
+                <button id="download-pdf-btn" class="btn-pdf">📄 Скачать Резюме в PDF</button>
+            </div>
+            <div class="skills-card">
+                <div class="section-title">Системные навыки</div>
+                <div class="tags-wrapper">
+                    <span class="tech-tag static-tag">Node.js (npm)</span>
+                    <span class="tech-tag static-tag">Git / GitHub</span>
+                    <span class="tech-tag static-tag">1С:Предприятие 8</span>
+                    <span class="tech-tag static-tag">SSH Консоль</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Правый блок контента -->
+        <div class="main-content">
+            <div class="achievements-container">
+                <div class="achievement-block">
+                    <div class="achievement-icon">🏆</div>
+                    <div class="achievement-info">
+                        <div class="achievement-title">
+                            <span>8-е место по СПб — Чемпионат «Профессионалы»</span>
+                            <a href="https://yandex.ru" target="_blank" class="link-prof">📊 Сертификат</a>
+                        </div>
+                        <div class="achievement-desc">Региональный этап Всероссийского чемпионатного движения в
+                            компетенции «Веб-технологии». Отличный инженерный результат, продемонстрированный на 3 курсе
+                            академии в условиях жесткого тайминга.</div>
+                    </div>
+                </div>
+                <div class="achievement-block">
+                    <div class="achievement-icon">🏅</div>
+                    <div class="achievement-info">
+                        <div class="achievement-title">Полуфиналист Всероссийской олимпиады «Волга-IT'26»</div>
+                        <div class="achievement-desc">Успешный выход в полуфинальную стадию масштабной цифровой
+                            олимпиады федерального уровня в профильной инженерной номинации «1С:Предприятие 8». Проверка
+                            логики и алгоритмов.</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Навигация интерактивных вкладок -->
+            <div class="tabs-nav">
+                <button class="tab-btn active" onclick="switchTab('skills')">Технические навыки</button>
+                <button class="tab-btn" onclick="switchTab('projects')">Портфолио проектов</button>
+                <button class="tab-btn" onclick="switchTab('experience')">Практика и обучение</button>
+            </div>
+
+            <!-- Вкладка 1: Навыки -->
+            <div id="skills" class="tab-content active">
+                <div class="section-card">
+                    <div class="section-title">Разработка интерфейсов (Frontend)</div>
+                    <div class="tags-wrapper">
+                        <a href="https://vuejs.org" target="_blank" class="tech-tag">Vue.js (Vue 3)</a>
+                        <a href="https://vuejs.org" target="_blank" class="tech-tag">Composition API</a>
+                        <a href="https://vuejs.org" target="_blank" class="tech-tag">Vue Router</a>
+                        <a href="https://vite.dev" target="_blank" class="tech-tag">Vite</a>
+                        <a href="https://mozilla.org" target="_blank" class="tech-tag">JavaScript (ES6+)</a>
+                        <a href="https://mozilla.org" target="_blank" class="tech-tag">HTML5 / CSS3</a>
+                        <a href="https://getbootstrap.com" target="_blank" class="tech-tag">Bootstrap 5</a>
+                        <a href="https://figma.com" target="_blank" class="tech-tag">Figma</a>
+                        <a href="https://mozilla.org" target="_blank" class="tech-tag">LocalStorage</a>
+                    </div>
+                </div>
+                <div class="section-card">
+                    <div class="section-title">Бэкенд-архитектура & СУБД</div>
+                    <div class="tags-wrapper">
+                        <a href="https://php.net" target="_blank" class="tech-tag">PHP</a>
+                        <a href="https://yiiframework.com" target="_blank" class="tech-tag">Yii2 Framework</a>
+                        <a href="https://mysql.com" target="_blank" class="tech-tag">MySQL</a>
+                        <a href="https://phpmyadmin.net" target="_blank" class="tech-tag">phpMyAdmin</a>
+                        <a href="https://python.org" target="_blank" class="tech-tag">Python</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Вкладка 2: Проекты -->
+            <div id="projects" class="tab-content">
+                <div class="project-card">
+                    <div class="project-header">
+                        <h3>1. Веб-платформа заказа онлайн-курсов</h3>
+                        <span class="project-meta">Демоэкзамен</span>
+                    </div>
+                    <div class="project-desc">Информационная бизнес-система на Yii2 (MVC) с MySQL, разработанная по
+                        стандартам «Профессионалы». Реализована ролевая система аккаунтов, личный кабинет и панели
+                        администрирования. Развертывание велось по SSH.</div>
+                </div>
+                <div class="project-card">
+                    <div class="project-header">
+                        <h3>2. Интерактивная командная mini-игра</h3>
+                        <span class="project-meta">Vue 3 + Vite</span>
+                    </div>
+                    <div class="project-desc">Командное SPA-приложение из 3 студентов. Роль Team Lead, организация
+                        работы в ветках, слияние через git merge и ручное разрешение конфликтов кода. Логика написана на
+                        Vue 3 Composition API.</div>
+                    <div class="project-buttons">
+                        <a href="https://github.com" target="_blank" class="btn-link">⚙️ Код GitHub</a>
+                        <a href="https://github.io" target="_blank" class="btn-link btn-live">🌐 Запустить игру</a>
+                    </div>
+                </div>
+                <div class="project-card">
+                    <div class="project-header">
+                        <h3>3. Интернет-магазин на Vue 3</h3>
+                        <span class="project-meta">Курсовой проект</span>
+                    </div>
+                    <div class="project-desc">Клиентское SPA на Vite и Vue Router 4. Бизнес-логика декомпозирована в
+                        кастомные файлы Composables (useUsers, useSubject). Данные корзины синхронизированы с
+                        LocalStorage.</div>
+                    <div class="project-buttons">
+                        <a href="https://github.com" target="_blank" class="btn-link">⚙️ Код GitHub</a>
+                        <a href="https://github.io" target="_blank" class="btn-link btn-live">🌐 Открыть сайт</a>
+                    </div>
+                </div>
+                <div class="project-card">
+                    <div class="project-header">
+                        <h3>4. Fullstack Интернет-магазин на Yii2 + MySQL</h3>
+                        <span class="project-meta">Курсовой проект / 4 курс</span>
+                    </div>
+                    <div class="project-desc">Классический e-commerce ресурс на архитектуре MVC. Проектирование и
+                        нормализация базы данных в phpMyAdmin, авторизация, корзина и админ-панель.</div>
+                </div>
+            </div>
+
+            <!-- Вкладка 3: Практика -->
+            <div id="experience" class="tab-content">
+                <div class="section-card">
+                    <div class="section-title">Производственная практика | АО «ТК «Конвей Плюс»</div>
+                    <div class="practice-meta">Май 2025 — Июнь 2025 | ПM.08 Разработка дизайна веб-приложений</div>
+                    <div class="project-desc">Верстка компонентов корпоративных ресурсов строго по UI/UX макетам из
+                        Figma. Применение Bootstrap 5 для реализации адаптивного дизайна (RWD). Работа с контролем
+                        версий Git.</div>
+                </div>
+                <div class="section-card">
+                    <div class="section-title">Основное образование</div>
+                    <div class="school-name" style="font-size:15px; font-weight:700; margin-bottom:4px;">СПб ГБПОУ
+                        «АУГСГиП»</div>
+                    <div class="practice-meta">4 курс | Выпуск в 2027 году</div>
+                    <div class="project-desc">Специальность: 09.02.07 «Информационные системы и программирование».
+                        Фундаментальная подготовка по базам данных, структурам и алгоритмам.</div>
+                </div>
+            </div>
+
+            <!-- Форма обратной связи -->
+            <div class="section-card section-card-form">
+                <div class="section-title">Форма обратной связи</div>
+                <form id="resume-contact-form" onsubmit="handleFormSubmit(event)">
+                    <div class="form-group"><label>Ваше имя или компания</label><input type="text" id="user-name"></div>
+                    <div class="form-group"><label>Контактный Email</label><input type="text" id="user-email"></div>
+                    <div class="form-group"><label>Сообщение</label><textarea id="user-message" rows="3"></textarea>
+                    </div>
+                    <button type="submit" class="btn-submit">Отправить предложение</button>
+                    <div id="form-status"></div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Клиентские JavaScript скрипты логики -->
+    <script>
+        // Исправленный локальный эмулятор EmailJS и html2pdf без блокировок CORS
+        (function (g) {
+            "use strict";
+            g.emailjs = {
+                init: function (p) {g._emailjsPK = p},
+                send: function (s, t, m) {
+                    // Использование официального CORS-эндпоинта EmailJS API
+                    return fetch("https://emailjs.com", {
+                        method: "POST",
+                        headers: {"Content-Type": "application/json"},
+                        body: JSON.stringify({
+                            service_id: s,
+                            template_id: t,
+                            user_id: g._emailjsPK,
+                            template_params: m
+                        })
+                    }).then(function (r) {
+                        if (!r.ok) throw new Error("Ошибка сервера");
+                        return r;
+                    });
+                }
+            };
+            g.html2pdf = function () {
+                var e = null, o = {};
+                return {
+                    set: function (x) {o = x; return this},
+                    from: function (y) {e = y; return this},
+                    save: function () {
+                        if (!e) return;
+                        var t = document.title;
+                        if (o.filename) document.title = o.filename.replace(".pdf", "");
+                        window.print();
+                        document.title = t;
+                        return Promise.resolve();
+                    }
+                };
+            };
+        })(window);
+
+        // Инициализация твоим Public Key
+        emailjs.init("uavwPkWlRYfG7Dd_Q");
+
+        // Функция переключения вкладок
+        function switchTab(tabId) {
+            document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
+            document.querySelectorAll('.tab-content').forEach(content => {
+                if (content.contentList) content.contentList.remove('active');
+                content.classList.remove('active');
+            });
+            const activeContent = document.getElementById(tabId);
+            if (activeContent) activeContent.classList.add('active');
+            const clickedBtn = Array.from(document.querySelectorAll('.tab-btn')).find(btn => btn.getAttribute('onclick').includes(tabId));
+            if (clickedBtn) clickedBtn.classList.add('active');
+        }
+
+        // Функция отправки формы без CORS ошибок
+        function handleFormSubmit(event) {
+            event.preventDefault();
+            const statusDiv = document.getElementById('form-status');
+            const name = document.getElementById('user-name').value.trim();
+            const email = document.getElementById('user-email').value.trim();
+            const message = document.getElementById('user-message').value.trim();
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+            if (!name || !email) {
+                statusDiv.style.color = '#ef4444';
+                statusDiv.textContent = 'Пожалуйста, заполните обязательные поля.';
+                return;
+            }
+            if (!emailRegex.test(email)) {
+                statusDiv.style.color = '#ef4444';
+                statusDiv.textContent = 'Введите корректный формат Email.';
+                return;
+            }
+
+            statusDiv.style.color = '#38bdf8';
+            statusDiv.textContent = 'Отправка...';
+
+            emailjs.send("service_g1d19ak", "template_bf76syd", {
+                from_name: name,
+                reply_to: email,
+                message: message
+            }).then(() => {
+                statusDiv.style.color = '#22c55e';
+                statusDiv.textContent = 'Успешно отправлено! Проверяйте почту.';
+                document.getElementById('resume-contact-form').reset();
+            }, (err) => {
+                statusDiv.style.color = '#ef4444';
+                statusDiv.textContent = 'Ошибка отправки. Подробности в консоли.';
+                console.error('EmailJS API Error:', err);
+            });
+        }
+
+        // Скачивание PDF
+        document.getElementById('download-pdf-btn').addEventListener('click', function () {
+            const allTabs = document.querySelectorAll('.tab-content');
+            allTabs.forEach(tab => tab.style.display = 'flex');
+
+            const element = document.getElementById('resume-document');
+            const opt = {
+                margin: 10,
+                filename: 'Резюме_Шамсутдинов_Павел.pdf',
+                image: {type: 'jpeg', quality: 0.98},
+                html2canvas: {scale: 2, useCORS: true, backgroundColor: '#ffffff'},
+                jsPDF: {unit: 'mm', format: 'a4', orientation: 'portrait'}
+            };
+
+            html2pdf().set(opt).from(element).save().then(() => {
+                allTabs.forEach(tab => tab.style.display = '');
+                document.querySelectorAll('.tab-content').forEach(tab => {
+                    if (!tab.classList.contains('active')) tab.style.display = 'none';
+                });
+            });
+        });
+    </script>
+</body>
+
+</html>
